@@ -1,10 +1,15 @@
 import React from "react";
 
-function GuessInput({ handleSubmitGuess }) {
+function GuessInput({ handleSubmitGuess, guessHistoryList }) {
   const [tentativeGuess, setTentativeGuess] = React.useState("");
 
   const submitForm = (event) => {
     event.preventDefault();
+
+    if (tentativeGuess.length !== 5) {
+      window.alert("enter exactly 5 letters");
+      return;
+    }
     console.log({ guess: tentativeGuess }); // TODO remove
     handleSubmitGuess(tentativeGuess);
 
@@ -23,7 +28,10 @@ function GuessInput({ handleSubmitGuess }) {
         }}
         minLength={5}
         maxLength={5}
+        pattern="^.{5}$"
         required
+        readOnly={guessHistoryList.length >= 6}
+        disabled={guessHistoryList.length >= 6}
       />
     </form>
   );
