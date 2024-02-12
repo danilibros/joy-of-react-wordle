@@ -1,16 +1,14 @@
 import React from "react";
 
-function GuessInput({ guessHistoryList, setGuessHistoryList }) {
-  const [guess, setGuess] = React.useState("");
+function GuessInput({ handleSubmitGuess }) {
+  const [tentativeGuess, setTentativeGuess] = React.useState("");
 
   const submitForm = (event) => {
     event.preventDefault();
-    console.log({ guess: guess });
-    setGuessHistoryList([
-      ...guessHistoryList,
-      { id: crypto.randomUUID(), word: guess },
-    ]);
-    setGuess("");
+    console.log({ guess: tentativeGuess }); // TODO remove
+    handleSubmitGuess(tentativeGuess);
+
+    setTentativeGuess("");
   };
 
   return (
@@ -19,9 +17,9 @@ function GuessInput({ guessHistoryList, setGuessHistoryList }) {
       <input
         id="guess-input"
         type="text"
-        value={guess}
+        value={tentativeGuess}
         onChange={(event) => {
-          setGuess(event.target.value.toUpperCase());
+          setTentativeGuess(event.target.value.toUpperCase());
         }}
         minLength={5}
         maxLength={5}

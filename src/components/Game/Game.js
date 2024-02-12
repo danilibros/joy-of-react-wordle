@@ -13,13 +13,15 @@ console.info({ answer });
 function Game() {
   const [guessHistoryList, setGuessHistoryList] = React.useState([]);
 
+  function handleSubmitGuess(tentativeGuess) {
+    const nextGuess = { word: tentativeGuess, id: crypto.randomUUID() };
+    setGuessHistoryList([...guessHistoryList, nextGuess]);
+  }
+
   return (
     <>
       <GuessHistory guessHistoryList={guessHistoryList}></GuessHistory>
-      <GuessInput
-        guessHistoryList={guessHistoryList}
-        setGuessHistoryList={setGuessHistoryList}
-      ></GuessInput>
+      <GuessInput handleSubmitGuess={handleSubmitGuess}></GuessInput>
     </>
   );
 }
