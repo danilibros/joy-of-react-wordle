@@ -2,15 +2,15 @@ import React from "react";
 import { range } from "../../utils";
 
 function Guess({ guess }) {
-  // React.useEffect(() => {
-  //   console.log(`guess`, guess?.word.split(""));
-  // });
+  const getClassForCell = (letterIndex) => {
+    return guess?.status[letterIndex].status;
+  };
 
   return (
     <p className="guess">
       {range(5).map((num) => {
         return (
-          <span key={num} className="cell">
+          <span key={num} className={"cell " + getClassForCell(num)}>
             {guess ? guess.word[num] : ""}
           </span>
         );
