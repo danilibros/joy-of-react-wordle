@@ -1,6 +1,6 @@
 import React from "react";
 
-function GuessInput({ handleSubmitGuess, guessHistoryList }) {
+function GuessInput({ handleSubmitGuess, gameStatus }) {
   const [tentativeGuess, setTentativeGuess] = React.useState("");
 
   const submitForm = (event) => {
@@ -30,8 +30,8 @@ function GuessInput({ handleSubmitGuess, guessHistoryList }) {
         maxLength={5}
         pattern="^.{5}$"
         required
-        readOnly={guessHistoryList.length >= 6}
-        disabled={guessHistoryList.length >= 6}
+        readOnly={gameStatus}
+        disabled={gameStatus}
       />
     </form>
   );
